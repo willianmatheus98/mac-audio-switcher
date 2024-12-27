@@ -49,6 +49,10 @@ sudo chmod +x /usr/local/bin/toggleaudio
 3. Find your shortcut under "General"
 4. Click on "none" next to it and press your desired key combination
 
+### Shortcuts app screenshot
+![Shortcuts screenshot](shortcut-screenshot.png)
+
+
 ## Usage
 
 Once installed, you can switch audio devices by:

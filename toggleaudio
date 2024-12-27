@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Enable debug mode if DEBUG environment variable is set
+if [ ! -z "$DEBUG" ]; then
+    set -x
+fi
+
+# Set PATH to include Homebrew directories
+export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+
+# Get the current audio device
+CURRENT_DEVICE=$(/opt/homebrew/bin/SwitchAudioSource -c)
+
+# Define your two audio devices here
+DEVICE1="Alto-falantes (MacBook Air)"
+DEVICE2="JBL Quantum350 Wireless"
+
+# Function to switch to a specified device
+switch_to_device() {
+    local device="$1"
+    if ! /opt/homebrew/bin/SwitchAudioSource -s "$device"; then
+        echo "Failed to switch to device: $device" >&2
+        exit 1
+    fi
+    echo "Switched to: $device"
+}
+
+# Toggle between devices
+if [ "$CURRENT_DEVICE" = "$DEVICE1" ]; then
+    switch_to_device "$DEVICE2"
+else
+    switch_to_device "$DEVICE1"
+fi
+
